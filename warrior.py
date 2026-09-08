@@ -1,7 +1,7 @@
 from player import Player
 
 class Warrior(Player):
-    def swingSword(self, victim):
+    def attack(self, victim):
         attack = input("Would you like to stab or slash your opponent? (s/sl):")
         while attack != "s" and attack != "sl":
             attack = input("Please enter a valid option (s/sl):")
