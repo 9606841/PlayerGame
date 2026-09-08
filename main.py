@@ -23,7 +23,7 @@ def main():
         if turn % 2 == 0:
             print(f"{player1.name}'s turn!")
             # wizard specific behavior
-            print(player1.castSpell(player2))
+            print(player1.attack(player2))
             print("____________________________________")
 
             print(f"{player1.name}'s turn is over!")
@@ -31,7 +31,7 @@ def main():
         else:
             print(f"{player2.name}'s turn!")
             # warrior specific behavior
-            print(player2.swingSword(player1))
+            print(player2.attack(player1))
             print("____________________________________")
             print(f"{player2.name}'s turn is over!")
             turn = turn + 1
