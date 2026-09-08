@@ -5,56 +5,55 @@ from warrior import Warrior
 def main():
     wizname = input("Enter the name of the wizard: ")
     warname = input("Enter the name of the warrior: ")
+    newplayer = input("Would you like to add a wizard or a warrior? (w/wa): ")
+    if newplayer == "w":
+        newname = input("Enter the name of the wizard: ")
+        player3 = Wizard(name = newname, health = 10)
+    elif newplayer == "wa":
+        newname = input("Enter the name of the warrior: ")
+        player3 = Warrior(name = newname, health = 10)
 
     # shared state for both players
     player1 = Wizard(name = wizname, health = 10)
     player2 = Warrior(name = warname, health = 10)
-    print(f"Welcome {player1.name} the wizard and {player2.name} the warrior! Let the battle begin!")
+    print(f"Welcome {player1.name}, {player2.name}, and {player3.name}! Let the battle begin!")
     print("...Starting Game...")
     print("____________________________________")
-    turn = 0
+    players = [player1, player2, player3]
+                
 
-    while player1.health > 0 and player2.health > 0:
+    while player1.health > 0 and player2.health > 0 and player3.health > 0:
         # shared behavior for both players is displaying status
-        print(player1.status())
-        print(player2.status())
+        for player in players:
+            print(player.status())
         print("____________________________________")
+        for player in players:
+            victim = input(f"{player.name}, who would you like to attack? Enter 1 for {player1.name}, 2 for {player2.name}, or 3 for {player3.name}: ")
+            print(player.attack(players[int(victim)-1]))
+            print("Turn complete! Next player's turn...")
         
-        if turn % 2 == 0:
-            print(f"{player1.name}'s turn!")
-            # wizard specific behavior
-            print(player1.attack(player2))
-            print("____________________________________")
-
-            print(f"{player1.name}'s turn is over!")
-            turn = turn + 1
-        else:
-            print(f"{player2.name}'s turn!")
-            # warrior specific behavior
-            print(player2.attack(player1))
-            print("____________________________________")
-            print(f"{player2.name}'s turn is over!")
-            turn = turn + 1
     
-    if player1.health <= 0:
-        print("____________________________________")
-        print(f"{player1.name} has been defeated! {player2.name} wins!")
-    elif player2.health <= 0:
-        print("____________________________________")
-        print(f"{player2.name} has been defeated! {player1.name} wins!")
+    
+    if player1.health <= 0 or player2.health <= 0 or player3.health <= 0:
+        print("Game Over! One of the players has been defeated.")
+        
 
 if __name__ == "__main__":
     main()
 
 
-# 1. What information or behavior did you define once in Player rather than repeat?
-# Within the Player class, the attributes 'name' and 'health' were defined. Concerning player behavior, the player class has methods for taking damage, healing, and showing statue.
+# Reflection
+# A. METHOD: Which method did you override, and why does it belong in the parent contract?
+# The overridden method is the 'attack' method. It belongs in the parent class since the activity of attacking is something that all players need too have the capability to do.
 
-# 2. Identify the line in your language that establishes the inheritance relationship. What does that line mean?
-# The lines that build that inheritance relationship are 'class Warrior(Player):' and 'class Wizard(Player)', and they associate all the behavior and states of the Player class with both the Warrior and Wizard classes.
+# B. DIFFERENCE: How do at least two subclasses implement it differently?
+# The Warrior subclass allows for stabbing and slashing while the Wizard subclass allows for cursing, attacking, and healing. Each of these choices has a different impact on the playability of the game.
 
-# 3. Why is this design better than copying an entire Player class for every specialized player?
-# It allows for efficiency and more readable code while also separating the unique and specific behavior of wizards and warriors. In addition, it saves storage space by cutting down on unnecessary code.
+# C. COLLECTION: What is the declared type of your collection, and what object types does it actually contain?
+# The type of the collection is a list containing player objects, and it holds Wizard and Warrior objects.
 
-# IB HL Learning Path
-# The 'is-a' relationship means that a specific class is a kind of a broader class. If this relationship doens't hold true, the inheritance wouldn't be the most efficient way to go about design constraints and it could lead to deeper issues within the code.
+# D. DISPATCH: How does the program determine which version of the method runs?
+# The kind of method run is done based off of the type of object it's called on(Wizard v. Warrior).
+
+# E. REVISION: What did you change after testing or after Friday's peer interviews?
+# I adjusted the turn logic to iterate through every player, and I added capabilities for a third player to be added to the game.
