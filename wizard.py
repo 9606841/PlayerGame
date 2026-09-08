@@ -1,7 +1,7 @@
 from player import Player
 
 class Wizard(Player):
-    def castSpell(self, victim):
+    def attack(self, victim):
         spell = input("Would you like to curse your opponent, attack your opponent, or heal yourself? (c/a/h):")
         while spell != "c" and spell != "a" and spell != "h":
             spell = input("Please enter a valid option (c/a/h):")
