@@ -19,5 +19,7 @@ class Player:
 
     def status(self):
         return f"Player Status for {self.name}: Health of {self.health}."
+    def attack(self, victim):
+        return f"{self} has attacked {victim}!"
 
 
