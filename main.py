@@ -11,7 +11,7 @@ def main():
     # shared state for both players
     player1 = Wizard(name = wizname, health = 10)
     player2 = Warrior(name = warname, health = 10)
-    player3 = Necromaner(name = necroname, health = 10)
+    player3 = Necromancer(name = necroname, health = 10)
     print(f"Welcome {player1.name}, {player2.name}, and {player3.name}! Let the battle begin!")
     print("...Starting Game...")
     print("____________________________________")
