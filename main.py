@@ -1,6 +1,7 @@
 from player import Player
 from wizard import Wizard
 from warrior import Warrior
+from necro import Necromancer
 
 def main():
     wizname = input("Enter the name of the wizard: ")
