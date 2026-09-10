@@ -6,17 +6,12 @@ from necro import Necromancer
 def main():
     wizname = input("Enter the name of the wizard: ")
     warname = input("Enter the name of the warrior: ")
-    newplayer = input("Would you like to add a wizard or a warrior? (w/wa): ")
-    if newplayer == "w":
-        newname = input("Enter the name of the wizard: ")
-        player3 = Wizard(name = newname, health = 10)
-    elif newplayer == "wa":
-        newname = input("Enter the name of the warrior: ")
-        player3 = Warrior(name = newname, health = 10)
+    necroname = input("Enter the name of the necromancer:")
 
     # shared state for both players
     player1 = Wizard(name = wizname, health = 10)
     player2 = Warrior(name = warname, health = 10)
+    player3 = Necromaner(name = necroname, health = 10)
     print(f"Welcome {player1.name}, {player2.name}, and {player3.name}! Let the battle begin!")
     print("...Starting Game...")
     print("____________________________________")
